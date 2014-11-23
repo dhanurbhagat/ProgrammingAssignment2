@@ -13,24 +13,24 @@ makeCacheMatrix<- function(x = matrix())
   
   get<-function() 
     x
-  setinv=function(inverse) 
+  setinversemat=function(inverse) 
   {
     inv<<- inverse
   }
-  getinv=function()
+  getinversemat=function()
   {
     inv
   }
   list(set=set,
        get=get,
-       setinv=setinv,
-       getinv=getinv)
+       setinversemat=setinversemat,
+       getinversemat=getinversemat)
 }
 #The commands below allows display the matrix inverse
 
 cacheSolve<-function(x)
 {
-  inv<-x$getinv()
+  inv<-x$getinversemat()
   
   if(!is.null(inv))
   {
@@ -45,7 +45,7 @@ cacheSolve<-function(x)
     message("Cached data not found. The inverst matrix is...")
     data<- x$get()
     inv<- solve(data)
-    x$setinv(inv)
+    x$setinversemat(inv)
     return(inv)
   }
 }
